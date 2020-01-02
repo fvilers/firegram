@@ -3,5 +3,8 @@
     "build": true,
     "node_modules": true,
     "yarn.lock": true
-  }
+  },
+  "cSpell.words": [
+    "Firegram"
+  ]
 }
