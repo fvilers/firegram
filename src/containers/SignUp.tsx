@@ -1,12 +1,23 @@
 import React from "react";
-import SignUpForm from "../components/SignUpForm";
+import { useSelector, useDispatch } from "react-redux";
+import { AppState, AsyncOperation } from "../redux/state";
+import { signUp } from "../redux/actions/sign-up";
+import SignUpForm, { SignUpFormValues } from "../components/SignUpForm";
 
 const SignUp: React.FC = () => {
+  const { busy, errorMessage } = useSelector<AppState, AsyncOperation>(
+    s => s.auth.ui.signUp
+  );
+  const dispatch = useDispatch();
+  const handleSubmit = ({ email, password }: SignUpFormValues) => {
+    dispatch(signUp(email, password));
+  };
+
   return (
     <SignUpForm
-      onSubmit={values => {
-        console.log(values);
-      }}
+      disabled={busy}
+      errorMessage={errorMessage}
+      onSubmit={handleSubmit}
     />
   );
 };
