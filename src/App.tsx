@@ -1,11 +1,8 @@
 import React from "react";
+import HomePage from "./pages/HomePage";
 
 const App: React.FC = () => {
-  return (
-    <div>
-      <h1>Firegram</h1>
-    </div>
-  );
+  return <HomePage />;
 };
 
 export default App;
