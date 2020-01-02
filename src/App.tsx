@@ -1,8 +1,13 @@
 import React from "react";
-import HomePage from "./pages/HomePage";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from "./Routes";
 
 const App: React.FC = () => {
-  return <HomePage />;
+  return (
+    <Router>
+      <Routes />
+    </Router>
+  );
 };
 
 export default App;
