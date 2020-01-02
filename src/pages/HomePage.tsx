@@ -7,6 +7,8 @@ const HomePage: React.FC = () => {
       <h1>Firegram</h1>
       <p>
         <Link to="/sign-up">Sign up</Link>
+        <br />
+        <Link to="/sign-in">Sign in</Link>
       </p>
     </div>
   );

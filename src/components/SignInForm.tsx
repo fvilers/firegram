@@ -1,14 +1,14 @@
 import React, { useState, FormEvent } from "react";
 import { FormProps } from "../types";
 
-export type SignUpFormValues = {
+export type SignInFormValues = {
   email: string;
   password: string;
 };
 
-type Props = FormProps<SignUpFormValues>;
+type Props = FormProps<SignInFormValues>;
 
-const SignUpForm: React.FC<Props> = ({ disabled, errorMessage, onSubmit }) => {
+const SignInForm: React.FC<Props> = ({ disabled, errorMessage, onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (e: FormEvent) => {
@@ -49,10 +49,10 @@ const SignUpForm: React.FC<Props> = ({ disabled, errorMessage, onSubmit }) => {
       {errorMessage && <div>{errorMessage}</div>}
 
       <button disabled={disabled} type="submit">
-        Sign up
+        Sign in
       </button>
     </form>
   );
 };
 
-export default SignUpForm;
+export default SignInForm;
