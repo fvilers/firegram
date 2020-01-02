@@ -1,3 +1,4 @@
 import { combineReducers } from "redux";
+import auth from "./auth";
 
-export default combineReducers({ fake: (state = {}) => state });
+export default combineReducers({ auth });
