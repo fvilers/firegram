@@ -1,13 +1,13 @@
 import React, { useState, FormEvent } from "react";
 import { FormProps } from "../types";
 
-export type SignInFormValues = {
+export type ProfileFormValues = {
   displayName: string;
   website: string;
   bio: string;
 };
 
-type Props = FormProps<SignInFormValues>;
+type Props = FormProps<ProfileFormValues>;
 
 const ProfileForm: React.FC<Props> = ({
   disabled,
