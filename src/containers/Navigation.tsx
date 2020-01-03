@@ -17,7 +17,8 @@ const Navigation: React.FC = () => {
         <br />
         {currentUser ? (
           <>
-            Welcome, {currentUser.email}
+            Welcome,{" "}
+            <Link to={`/users/${currentUser.uid}`}>{currentUser.email}</Link>
             <br />
             <Link to="/new-post">New post</Link>
             <br />
