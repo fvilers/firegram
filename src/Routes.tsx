@@ -21,7 +21,7 @@ const Routes: React.FC = () => {
       <Route exact path="/users/:id" component={UserPage} />
       <ProtectedRoute
         exact
-        path="/users/:userId/edit"
+        path="/users/:id/edit"
         component={EditProfilePage}
       />
       <Route component={NotFoundPage} />
