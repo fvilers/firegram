@@ -17,6 +17,8 @@ const Navigation: React.FC = () => {
           <>
             Welcome, {currentUser.email}
             <br />
+            <Link to="/new-post">New post</Link>
+            <br />
             <SignOut />
           </>
         ) : (
