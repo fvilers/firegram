@@ -6,6 +6,7 @@ export type FormProps<T> = {
   disabled?: boolean;
   errorMessage?: string;
   onSubmit: (values: T) => void;
+  values?: Partial<T>;
 };
 
 export type Identity = {

@@ -6,6 +6,8 @@ import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import NewPostPage from "./pages/NewPostPage";
 import PostPage from "./pages/PostPage";
+import UserPage from "./pages/UserPage";
+import EditProfilePage from "./pages/EditProfilePage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 const Routes: React.FC = () => {
@@ -16,6 +18,12 @@ const Routes: React.FC = () => {
       <Route exact path="/sign-in" component={SignInPage} />
       <ProtectedRoute exact path="/new-post" component={NewPostPage} />
       <Route exact path="/posts/:id" component={PostPage} />
+      <Route exact path="/users/:id" component={UserPage} />
+      <ProtectedRoute
+        exact
+        path="/users/:id/edit"
+        component={EditProfilePage}
+      />
       <Route component={NotFoundPage} />
     </Switch>
   );

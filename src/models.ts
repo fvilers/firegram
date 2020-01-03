@@ -15,3 +15,9 @@ export type PostModel = {
     uid: string;
   };
 } & BaseModel;
+
+export type ProfileModel = {
+  displayName: string;
+  website?: string;
+  bio?: string;
+} & BaseModel;
