@@ -9,8 +9,8 @@ const SignUp: React.FC = () => {
     s => s.auth.ui.signUp
   );
   const dispatch = useDispatch();
-  const handleSubmit = ({ email, password }: SignUpFormValues) => {
-    dispatch(signUp(email, password));
+  const handleSubmit = ({ name, email, password }: SignUpFormValues) => {
+    dispatch(signUp(name, email, password));
   };
 
   return (
