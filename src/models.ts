@@ -10,5 +10,8 @@ export type PostModel = {
   caption: string;
   fileName: string;
   fileUrl?: string;
-  owner: string;
+  owner: {
+    displayName: string;
+    uid: string;
+  };
 } & BaseModel;
