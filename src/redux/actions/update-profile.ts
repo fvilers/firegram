@@ -11,9 +11,9 @@ export const UPDATE_PROFILE_FAILED = "UPDATE_PROFILE_FAILED";
 type UpdateProfileStartedAction = {
   type: typeof UPDATE_PROFILE_STARTED;
   payload: {
-    bio: string;
     displayName: string;
-    website: string;
+    website?: string;
+    bio?: string;
   };
 };
 
@@ -29,8 +29,8 @@ type UpdateProfileFailedAction = {
 
 const updateProfileStarted = (
   displayName: string,
-  website: string,
-  bio: string
+  website?: string,
+  bio?: string
 ): UpdateProfileStartedAction => ({
   type: UPDATE_PROFILE_STARTED,
   payload: { displayName, website, bio }
@@ -55,8 +55,8 @@ export type UpdateProfileActions =
 
 export const updateProfile = (
   displayName: string,
-  website: string,
-  bio: string
+  website?: string,
+  bio?: string
 ): ThunkAction<void, AppState, null, UpdateProfileActions> => async (
   dispatch,
   getState

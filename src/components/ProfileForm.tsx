@@ -3,8 +3,8 @@ import { FormProps } from "../types";
 
 export type ProfileFormValues = {
   displayName: string;
-  website: string;
-  bio: string;
+  website?: string;
+  bio?: string;
 };
 
 type Props = FormProps<ProfileFormValues>;

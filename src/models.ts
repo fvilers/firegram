@@ -18,6 +18,6 @@ export type PostModel = {
 
 export type ProfileModel = {
   displayName: string;
-  website: string;
-  bio: string;
+  website?: string;
+  bio?: string;
 } & BaseModel;
