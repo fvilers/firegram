@@ -5,16 +5,23 @@ import {
   GET_PROFILE_SUCCEEDED,
   GET_PROFILE_FAILED
 } from "../actions/get-profile";
+import {
+  UpdateProfileActions,
+  UPDATE_PROFILE_STARTED,
+  UPDATE_PROFILE_SUCCEEDED,
+  UPDATE_PROFILE_FAILED
+} from "../actions/update-profile";
 import { merge } from "../helpers";
 
 const INITIAL_STATE: UserState = {
   collection: {},
   ui: {
-    getProfile: { busy: false }
+    getProfile: { busy: false },
+    updateProfile: { busy: false }
   }
 };
 
-type SupportedActions = GetProfileActions;
+type SupportedActions = GetProfileActions | UpdateProfileActions;
 
 const reducer = (
   state = INITIAL_STATE,
@@ -36,6 +43,23 @@ const reducer = (
     case GET_PROFILE_FAILED:
       return merge(state, {
         ui: { getProfile: { busy: false, errorMessage: action.payload } }
+      });
+
+    case UPDATE_PROFILE_STARTED:
+      return merge(state, {
+        ui: { updateProfile: { busy: true, errorMessage: undefined } }
+      });
+
+    case UPDATE_PROFILE_SUCCEEDED:
+      return merge(
+        state,
+        { collection: { [action.payload.id]: action.payload } },
+        { ui: { updateProfile: { busy: false } } }
+      );
+
+    case UPDATE_PROFILE_FAILED:
+      return merge(state, {
+        ui: { updateProfile: { busy: false, errorMessage: action.payload } }
       });
 
     default:

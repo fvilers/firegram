@@ -30,6 +30,7 @@ export type UserState = {
   collection: Record<string, ProfileModel>;
   ui: {
     getProfile: AsyncOperation;
+    updateProfile: AsyncOperation;
   };
 };
 
