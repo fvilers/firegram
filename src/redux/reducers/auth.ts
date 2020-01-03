@@ -22,7 +22,7 @@ import {
   SIGN_UP_SUCCEEDED,
   SIGN_UP_FAILED
 } from "../actions/sign-up";
-import { merge } from "../merge";
+import { merge } from "../helpers";
 
 const INITIAL_STATE: AuthState = {
   currentUser: null,
