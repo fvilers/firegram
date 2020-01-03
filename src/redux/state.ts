@@ -11,6 +11,7 @@ export type AuthState = {
   ready: boolean;
   ui: {
     signIn: AsyncOperation;
+    signOut: AsyncOperation;
     signUp: AsyncOperation;
   };
 };
