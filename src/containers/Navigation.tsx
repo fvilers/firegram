@@ -13,6 +13,8 @@ const Navigation: React.FC = () => {
   return (
     <nav>
       <p>
+        <Link to="/">Home</Link>
+        <br />
         {currentUser ? (
           <>
             Welcome, {currentUser.email}
