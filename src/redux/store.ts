@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { SIGN_IN_STARTED } from "./actions/sign-in";
 import { SIGN_UP_STARTED } from "./actions/sign-up";
-import { merge } from "./merge";
+import { merge } from "./helpers";
 import rootReducer from "./reducers";
 
 const actionSanitizer = <A extends AnyAction>(action: A): A => {

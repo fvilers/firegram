@@ -6,22 +6,29 @@ import {
   CREATE_POST_FAILED
 } from "../actions/create-post";
 import {
+  FindPostsActions,
+  FIND_POSTS_STARTED,
+  FIND_POSTS_SUCCEEDED,
+  FIND_POSTS_FAILED
+} from "../actions/find-posts";
+import {
   GetPostActions,
   GET_POST_STARTED,
   GET_POST_SUCCEEDED,
   GET_POST_FAILED
 } from "../actions/get-post";
-import { merge } from "../merge";
+import { merge, toObject } from "../helpers";
 
 const INITIAL_STATE: PostState = {
   collection: {},
   ui: {
     createPost: { busy: false },
+    findPosts: { busy: false },
     getPost: { busy: false }
   }
 };
 
-type SupportedActions = CreatePostActions | GetPostActions;
+type SupportedActions = CreatePostActions | FindPostsActions | GetPostActions;
 
 const reducer = (
   state = INITIAL_STATE,
@@ -43,6 +50,23 @@ const reducer = (
     case CREATE_POST_FAILED:
       return merge(state, {
         ui: { createPost: { busy: false, errorMessage: action.payload } }
+      });
+
+    case FIND_POSTS_STARTED:
+      return merge(state, {
+        ui: { findPosts: { busy: true, errorMessage: undefined } }
+      });
+
+    case FIND_POSTS_SUCCEEDED:
+      return merge(
+        state,
+        { collection: toObject(action.payload) },
+        { ui: { findPosts: { busy: false } } }
+      );
+
+    case FIND_POSTS_FAILED:
+      return merge(state, {
+        ui: { findPosts: { busy: false, errorMessage: action.payload } }
       });
 
     case GET_POST_STARTED:
