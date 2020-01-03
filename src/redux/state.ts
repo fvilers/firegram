@@ -7,6 +7,8 @@ export type AsyncOperation = {
 
 export type AuthState = {
   currentUser: firebase.User | null;
+  errorMessage?: string;
+  ready: boolean;
   ui: {
     signIn: AsyncOperation;
     signUp: AsyncOperation;

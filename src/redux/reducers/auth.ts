@@ -1,5 +1,10 @@
 import { AuthState } from "../state";
 import {
+  AuthStateActions,
+  AUTH_STATE_CHANGED,
+  AUTH_STATE_FAILED
+} from "../actions/auth-state";
+import {
   SignInActions,
   SIGN_IN_STARTED,
   SIGN_IN_SUCCEEDED,
@@ -15,19 +20,26 @@ import { merge } from "../merge";
 
 const INITIAL_STATE: AuthState = {
   currentUser: null,
+  ready: false,
   ui: {
     signIn: { busy: false },
     signUp: { busy: false }
   }
 };
 
-type SupportedActions = SignInActions | SignUpActions;
+type SupportedActions = AuthStateActions | SignInActions | SignUpActions;
 
 const reducer = (
   state = INITIAL_STATE,
   action: SupportedActions
 ): AuthState => {
   switch (action.type) {
+    case AUTH_STATE_CHANGED:
+      return merge(state, { currentUser: action.payload, ready: true });
+
+    case AUTH_STATE_FAILED:
+      return merge(state, { errorMessage: action.payload, ready: true });
+
     case SIGN_IN_STARTED:
       return merge(state, {
         ui: { signIn: { busy: true, errorMessage: undefined } }
