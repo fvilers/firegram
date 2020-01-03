@@ -7,3 +7,7 @@ export type FormProps<T> = {
   errorMessage?: string;
   onSubmit: (values: T) => void;
 };
+
+export type Identity = {
+  id: string;
+};

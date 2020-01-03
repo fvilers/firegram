@@ -1,4 +1,5 @@
 import firebase from "../firebase";
+import { PostModel } from "../models";
 
 export type AsyncOperation = {
   busy: boolean;
@@ -16,6 +17,14 @@ export type AuthState = {
   };
 };
 
+export type PostState = {
+  collection: Record<string, PostModel>;
+  ui: {
+    createPost: AsyncOperation;
+  };
+};
+
 export type AppState = {
   auth: AuthState;
+  post: PostState;
 };
