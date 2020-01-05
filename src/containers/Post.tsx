@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Loader, Message } from "semantic-ui-react";
 import { AppState, AsyncOperation } from "../redux/state";
 import { PostModel } from "../models";
 import { getPost } from "../redux/actions/get-post";
@@ -23,15 +24,15 @@ const Post: React.FC = () => {
   }, [dispatch, id]);
 
   if (busy) {
-    return <>Loading...</>;
+    return <Loader active />;
   }
 
   if (errorMessage) {
-    return <>{errorMessage}</>;
+    return <Message negative>{errorMessage}</Message>;
   }
 
   if (!post) {
-    return <>Post not found</>;
+    return <Message negative>Post not found</Message>;
   }
 
   return <PostDetails {...post} />;

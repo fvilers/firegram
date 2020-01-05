@@ -5,7 +5,7 @@ import Profile from "../containers/Profile";
 
 const UserPage: React.FC = () => {
   return (
-    <Container>
+    <Container style={{ paddingTop: "1rem" }}>
       <Navigation />
       <Profile />
     </Container>

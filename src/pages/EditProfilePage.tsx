@@ -5,7 +5,7 @@ import Navigation from "../containers/Navigation";
 
 const EditProfilePage: React.FC = () => {
   return (
-    <Container>
+    <Container style={{ paddingTop: "1rem" }}>
       <Navigation />
       <EditProfile />
     </Container>

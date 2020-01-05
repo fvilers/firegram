@@ -65,7 +65,7 @@ const NewPostForm: React.FC<Props> = ({ disabled, errorMessage, onSubmit }) => {
 
       {errorMessage && <Message negative>{errorMessage}</Message>}
 
-      <Button disabled={disabled} primary type="submit">
+      <Button disabled={disabled} loading={disabled} primary type="submit">
         Create new post
       </Button>
     </Form>

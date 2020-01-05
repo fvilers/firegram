@@ -5,7 +5,7 @@ import Post from "../containers/Post";
 
 const PostPage: React.FC = () => {
   return (
-    <Container>
+    <Container style={{ paddingTop: "1rem" }}>
       <Navigation />
       <Post />
     </Container>

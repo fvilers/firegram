@@ -5,7 +5,7 @@ import RecentPosts from "../containers/RecentPosts";
 
 const HomePage: React.FC = () => {
   return (
-    <Container>
+    <Container style={{ paddingTop: "1rem" }}>
       <Navigation />
       <RecentPosts />
     </Container>

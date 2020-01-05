@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Loader, Message } from "semantic-ui-react";
 import { AppState, AsyncOperation } from "../redux/state";
 import { ProfileModel } from "../models";
 import { getProfile } from "../redux/actions/get-profile";
@@ -28,15 +29,15 @@ const Profile: React.FC = () => {
   }, [dispatch, id]);
 
   if (busy) {
-    return <>Loading...</>;
+    return <Loader active />;
   }
 
   if (errorMessage) {
-    return <>{errorMessage}</>;
+    return <Message negative>{errorMessage}</Message>;
   }
 
   if (!profile) {
-    return <>Profile not found</>;
+    return <Message negative>Profile not found</Message>;
   }
 
   return <ProfileDetails canEdit={currentUser?.uid === id} {...profile} />;

@@ -62,7 +62,14 @@ const SignUpForm: React.FC<Props> = ({ disabled, errorMessage, onSubmit }) => {
 
         {errorMessage && <Message negative>{errorMessage}</Message>}
 
-        <Button disabled={disabled} fluid primary size="large" type="submit">
+        <Button
+          disabled={disabled}
+          fluid
+          loading={disabled}
+          primary
+          size="large"
+          type="submit"
+        >
           Sign up
         </Button>
       </Segment>

@@ -57,7 +57,7 @@ const ProfileForm: React.FC<Props> = ({
 
       {errorMessage && <Message negative>{errorMessage}</Message>}
 
-      <Button disabled={disabled} primary type="submit">
+      <Button disabled={disabled} loading={disabled} primary type="submit">
         Save
       </Button>
     </Form>

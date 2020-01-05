@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Loader, Message } from "semantic-ui-react";
 import { AppState, AsyncOperation } from "../redux/state";
 import { ProfileModel } from "../models";
 import { getProfile } from "../redux/actions/get-profile";
@@ -32,15 +33,15 @@ const EditProfile: React.FC = () => {
   }, [dispatch, id]);
 
   if (getOperation.busy) {
-    return <>Loading...</>;
+    return <Loader active />;
   }
 
   if (getOperation.errorMessage) {
-    return <>{getOperation.errorMessage}</>;
+    return <Message negative>{getOperation.errorMessage}</Message>;
   }
 
   if (!profile) {
-    return <>Profile not found</>;
+    return <Message negative>Profile not found</Message>;
   }
 
   return (

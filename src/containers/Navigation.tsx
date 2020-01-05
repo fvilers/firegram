@@ -17,7 +17,7 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <Menu>
+    <Menu borderless>
       <Container>
         <Menu.Item as={Link} header to="/">
           Firegram
