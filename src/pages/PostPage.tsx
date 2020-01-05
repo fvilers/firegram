@@ -1,14 +1,14 @@
 import React from "react";
+import { Container } from "semantic-ui-react";
 import Navigation from "../containers/Navigation";
 import Post from "../containers/Post";
 
 const PostPage: React.FC = () => {
   return (
-    <div>
-      <h1>Post</h1>
+    <Container>
       <Navigation />
       <Post />
-    </div>
+    </Container>
   );
 };
 

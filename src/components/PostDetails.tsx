@@ -1,7 +1,7 @@
 import React from "react";
+import { Card, Grid, Image } from "semantic-ui-react";
 import { PostModel } from "../models";
-import DateTime from "./DateTime";
-import { Link } from "react-router-dom";
+import FromNow from "./FromNow";
 
 const PostDetails: React.FC<PostModel> = ({
   caption,
@@ -10,16 +10,22 @@ const PostDetails: React.FC<PostModel> = ({
   owner
 }) => {
   return (
-    <figure>
-      <img alt={caption} src={fileUrl} style={{ maxWidth: 400 }} />
-      <figcaption>
-        <p>{caption}</p>
-        <p>
-          by <Link to={`/users/${owner.uid}`}>{owner.displayName}</Link>, on{" "}
-          <DateTime seconds={createdAt.seconds} />
-        </p>
-      </figcaption>
-    </figure>
+    <Grid centered columns={2}>
+      <Grid.Row>
+        <Grid.Column>
+          <Card fluid>
+            <Image src={fileUrl} />
+            <Card.Content>
+              <Card.Header>{owner.displayName}</Card.Header>
+              <Card.Description>{caption}</Card.Description>
+              <Card.Meta>
+                <FromNow seconds={createdAt.seconds} />
+              </Card.Meta>
+            </Card.Content>
+          </Card>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 };
 
