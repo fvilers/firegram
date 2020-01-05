@@ -9,7 +9,7 @@ export const SIGN_UP_FAILED = "SIGN_UP_FAILED";
 
 type SignUpStartedAction = {
   type: typeof SIGN_UP_STARTED;
-  payload: { displayName: string; email: string; password: string };
+  payload: { name: string; email: string; password: string };
 };
 
 type SignUpSucceededAction = {
@@ -23,12 +23,12 @@ type SignUpFailedAction = {
 };
 
 const signUpStarted = (
-  displayName: string,
+  name: string,
   email: string,
   password: string
 ): SignUpStartedAction => ({
   type: SIGN_UP_STARTED,
-  payload: { displayName, email, password }
+  payload: { name, email, password }
 });
 
 const signUpSucceeded = (user: firebase.User): SignUpSucceededAction => ({
@@ -47,11 +47,11 @@ export type SignUpActions =
   | SignUpFailedAction;
 
 export const signUp = (
-  displayName: string,
+  name: string,
   email: string,
   password: string
 ): ThunkAction<void, AppState, null, SignUpActions> => async dispatch => {
-  dispatch(signUpStarted(displayName, email, password));
+  dispatch(signUpStarted(name, email, password));
 
   try {
     const { user } = await firebase
@@ -62,14 +62,14 @@ export const signUp = (
       throw new Error("Assertion failed : user shouldn't be null.");
     }
 
-    await user.updateProfile({ displayName });
+    await user.updateProfile({ displayName: name });
     await firebase
       .firestore()
       .collection("users")
       .doc(user.uid)
       .set({
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        displayName,
+        name,
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
 

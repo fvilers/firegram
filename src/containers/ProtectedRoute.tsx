@@ -7,7 +7,7 @@ const ProtectedRoute: React.FC<RouteProps> = ({ component, ...rest }) => {
   const { ready, currentUser } = useSelector<AppState, AuthState>(s => s.auth);
 
   if (!ready) {
-    return <>Loading...</>;
+    return null;
   }
 
   if (!currentUser) {

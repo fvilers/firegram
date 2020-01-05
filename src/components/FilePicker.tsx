@@ -1,4 +1,5 @@
 import React, { useRef, useState, ChangeEvent } from "react";
+import { Input } from "semantic-ui-react";
 
 type Props = {
   accept?: string;
@@ -42,10 +43,12 @@ const FilePicker: React.FC<Props> = ({
         type="file"
       />
 
-      <input onClick={handleBrowse} readOnly value={fileName} />
-      <button onClick={handleBrowse} type="button">
-        Browse
-      </button>
+      <Input
+        action={{ content: "Browse", onClick: handleBrowse, type: "button" }}
+        onClick={handleBrowse}
+        readOnly
+        value={fileName}
+      />
     </div>
   );
 };

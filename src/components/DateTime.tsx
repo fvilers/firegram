@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import dayjs from 'dayjs';
+import React, { useMemo } from "react";
+import dayjs from "dayjs";
 
 type Props = {
   format?: string;
@@ -8,9 +8,9 @@ type Props = {
 };
 
 const DateTime: React.FC<Props> = ({
-  format = 'DD-MM-YYYY',
+  format = "DD-MM-YYYY",
   seconds,
-  titleFormat = 'DD-MM-YYYY HH:mm:ss'
+  titleFormat = "DD-MM-YYYY HH:mm:ss"
 }) => {
   const parsed = useMemo(() => dayjs.unix(seconds), [seconds]);
 

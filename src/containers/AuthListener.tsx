@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { AppState } from "../redux/state";
+import { Dimmer, Loader, Message } from "semantic-ui-react";
+import { AppState, AuthState } from "../redux/state";
 import firebase from "../firebase";
 import { authStateChanged, authStateFailed } from "../redux/actions/auth-state";
 
 const AuthListener: React.FC<{}> = ({ children }) => {
-  const ready = useSelector<AppState, boolean>(s => s.auth.ready);
+  const { errorMessage, ready } = useSelector<AppState, AuthState>(s => s.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +19,15 @@ const AuthListener: React.FC<{}> = ({ children }) => {
   }, [dispatch]);
 
   if (!ready) {
-    return <p>Loading...</p>;
+    return (
+      <Dimmer active inverted>
+        <Loader />
+      </Dimmer>
+    );
+  }
+
+  if (errorMessage) {
+    return <Message negative>{errorMessage}</Message>;
   }
 
   return <>{children}</>;
