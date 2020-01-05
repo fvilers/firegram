@@ -1,4 +1,5 @@
 import React from "react";
+import { Card } from "semantic-ui-react";
 import { PostModel } from "../models";
 import PostListItem from "./PostListItem";
 
@@ -8,11 +9,11 @@ type Props = {
 
 const PostList: React.FC<Props> = ({ items }) => {
   return (
-    <ul>
+    <Card.Group>
       {items.map(item => (
         <PostListItem key={item.id} {...item} />
       ))}
-    </ul>
+    </Card.Group>
   );
 };
 
