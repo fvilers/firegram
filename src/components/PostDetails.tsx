@@ -16,7 +16,7 @@ const PostDetails: React.FC<PostModel> = ({
           <Card fluid>
             <Image src={fileUrl} />
             <Card.Content>
-              <Card.Header>{owner.displayName}</Card.Header>
+              <Card.Header>{owner.name}</Card.Header>
               <Card.Description>{caption}</Card.Description>
               <Card.Meta>
                 <FromNow seconds={createdAt.seconds} />

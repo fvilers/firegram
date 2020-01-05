@@ -11,13 +11,13 @@ export type PostModel = {
   fileName: string;
   fileUrl?: string;
   owner: {
-    displayName: string;
+    name: string;
     uid: string;
   };
 } & BaseModel;
 
 export type ProfileModel = {
-  displayName: string;
+  name: string;
   website?: string;
   bio?: string;
 } & BaseModel;

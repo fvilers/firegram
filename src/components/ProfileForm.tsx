@@ -1,8 +1,9 @@
 import React, { useState, FormEvent } from "react";
+import { Button, Form, Message, TextArea } from "semantic-ui-react";
 import { FormProps } from "../types";
 
 export type ProfileFormValues = {
-  displayName: string;
+  name: string;
   website?: string;
   bio?: string;
 };
@@ -15,58 +16,51 @@ const ProfileForm: React.FC<Props> = ({
   onSubmit,
   values
 }) => {
-  const [displayName, setDisplayName] = useState(values?.displayName || "");
+  const [name, setName] = useState(values?.name || "");
   const [website, setWebsite] = useState(values?.website || "");
   const [bio, setBio] = useState(values?.bio || "");
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit({ displayName, website, bio });
+    onSubmit({ name, website, bio });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name</label>
-        <br />
-        <input
-          autoFocus
-          disabled={disabled}
-          id="name"
-          onChange={e => setDisplayName(e.target.value)}
-          required
-          value={displayName}
-        />
-      </div>
+    <Form onSubmit={handleSubmit}>
+      <Form.Input
+        autoComplete="name"
+        autoFocus
+        disabled={disabled}
+        fluid
+        onChange={e => setName(e.target.value)}
+        placeholder="Your name"
+        required
+        value={name}
+      />
 
-      <div>
-        <label htmlFor="website">Website</label>
-        <br />
-        <input
-          disabled={disabled}
-          id="website"
-          onChange={e => setWebsite(e.target.value)}
-          type="url"
-          value={website}
-        />
-      </div>
+      <Form.Input
+        autoComplete="url"
+        disabled={disabled}
+        fluid
+        onChange={e => setWebsite(e.target.value)}
+        placeholder="Website"
+        value={website}
+      />
 
-      <div>
-        <label htmlFor="bio">Bio</label>
-        <br />
-        <textarea
+      <Form.Field>
+        <TextArea
           disabled={disabled}
-          id="bio"
-          onChange={e => setBio(e.target.value)}
+          onChange={(_e, { value }) => setBio(value as string)}
+          placeholder="Bio"
           value={bio}
         />
-      </div>
+      </Form.Field>
 
-      {errorMessage && <div>{errorMessage}</div>}
+      {errorMessage && <Message negative>{errorMessage}</Message>}
 
-      <button disabled={disabled} type="submit">
+      <Button disabled={disabled} primary type="submit">
         Save
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 };
 

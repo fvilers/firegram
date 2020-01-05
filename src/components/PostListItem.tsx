@@ -15,7 +15,7 @@ const PostListItem: React.FC<PostModel> = ({
     <Card as={Link} to={`/posts/${id}`}>
       <Image src={fileUrl} />
       <Card.Content>
-        <Card.Header>{owner.displayName}</Card.Header>
+        <Card.Header>{owner.name}</Card.Header>
         <Card.Description>{caption}</Card.Description>
         <Card.Meta>
           <FromNow seconds={createdAt.seconds} />

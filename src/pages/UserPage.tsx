@@ -1,14 +1,14 @@
 import React from "react";
+import { Container } from "semantic-ui-react";
 import Navigation from "../containers/Navigation";
 import Profile from "../containers/Profile";
 
 const UserPage: React.FC = () => {
   return (
-    <div>
-      <h1>User</h1>
+    <Container>
       <Navigation />
       <Profile />
-    </div>
+    </Container>
   );
 };
 

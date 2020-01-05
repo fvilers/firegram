@@ -59,7 +59,7 @@ export const createPost = (
   dispatch,
   getState
 ) => {
-  const { displayName, uid } = getState().auth.currentUser!;
+  const { displayName: name, uid } = getState().auth.currentUser!;
 
   dispatch(createPostStarted(caption, fileContent, fileName));
 
@@ -71,10 +71,7 @@ export const createPost = (
         caption,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         fileName,
-        owner: {
-          displayName,
-          uid
-        },
+        owner: { name, uid },
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
     const snapshot = await docRef.get();

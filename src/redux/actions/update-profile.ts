@@ -11,7 +11,7 @@ export const UPDATE_PROFILE_FAILED = "UPDATE_PROFILE_FAILED";
 type UpdateProfileStartedAction = {
   type: typeof UPDATE_PROFILE_STARTED;
   payload: {
-    displayName: string;
+    name: string;
     website?: string;
     bio?: string;
   };
@@ -28,12 +28,12 @@ type UpdateProfileFailedAction = {
 };
 
 const updateProfileStarted = (
-  displayName: string,
+  name: string,
   website?: string,
   bio?: string
 ): UpdateProfileStartedAction => ({
   type: UPDATE_PROFILE_STARTED,
-  payload: { displayName, website, bio }
+  payload: { name, website, bio }
 });
 
 const updateProfileSucceeded = (
@@ -54,7 +54,7 @@ export type UpdateProfileActions =
   | UpdateProfileFailedAction;
 
 export const updateProfile = (
-  displayName: string,
+  name: string,
   website?: string,
   bio?: string
 ): ThunkAction<void, AppState, null, UpdateProfileActions> => async (
@@ -63,10 +63,10 @@ export const updateProfile = (
 ) => {
   const { uid } = getState().auth.currentUser!;
 
-  dispatch(updateProfileStarted(displayName, website, bio));
+  dispatch(updateProfileStarted(name, website, bio));
 
   try {
-    await firebase.auth().currentUser?.updateProfile({ displayName });
+    await firebase.auth().currentUser?.updateProfile({ displayName: name });
 
     const docRef = firebase
       .firestore()
@@ -75,7 +75,7 @@ export const updateProfile = (
 
     await docRef.update({
       bio,
-      displayName,
+      name,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
       website
     });

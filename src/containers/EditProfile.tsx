@@ -23,8 +23,8 @@ const EditProfile: React.FC = () => {
     s => s.user.ui.updateProfile
   );
   const dispatch = useDispatch();
-  const handleSubmit = ({ displayName, website, bio }: ProfileFormValues) => {
-    dispatch(updateProfile(displayName, website, bio));
+  const handleSubmit = ({ name, website, bio }: ProfileFormValues) => {
+    dispatch(updateProfile(name, website, bio));
   };
 
   useEffect(() => {

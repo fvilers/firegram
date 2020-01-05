@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Menu } from "semantic-ui-react";
+import { Container, Image, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AppState } from "../redux/state";
@@ -28,6 +28,12 @@ const Navigation: React.FC = () => {
               New post
             </Menu.Item>
             <Menu.Menu position="right">
+              <Menu.Item as={Link} to={`/users/${currentUser.uid}`}>
+                {currentUser.photoURL && (
+                  <Image avatar src={currentUser.photoURL} />
+                )}
+                {currentUser.displayName}
+              </Menu.Item>
               <Menu.Item disabled={busy} onClick={handleSignOut}>
                 Sign out
               </Menu.Item>
