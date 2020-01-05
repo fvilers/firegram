@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from "react";
+import { Button, Form, Image, Message, TextArea } from "semantic-ui-react";
 import { FormProps } from "../types";
 import FilePicker from "./FilePicker";
 
@@ -38,30 +39,36 @@ const NewPostForm: React.FC<Props> = ({ disabled, errorMessage, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {fileContent && (
-        <img alt={fileName} src={fileContent} style={{ maxWidth: 400 }} />
-      )}
-      <FilePicker accept="image/*" id="picture" onFilePick={handleFilePick} />
+    <Form onSubmit={handleSubmit}>
+      <Form.Field>
+        {fileContent && (
+          <Image
+            alt={fileName}
+            rounded
+            size="large"
+            src={fileContent}
+            style={{ marginBottom: "1rem" }}
+          />
+        )}
+        <FilePicker accept="image/*" id="picture" onFilePick={handleFilePick} />
+      </Form.Field>
 
-      <div>
-        <label htmlFor="caption">Write a caption</label>
-        <br />
-        <textarea
+      <Form.Field>
+        <TextArea
           disabled={disabled}
-          id="caption"
-          onChange={e => setCaption(e.target.value)}
+          onChange={(_e, { value }) => setCaption(value as string)}
+          placeholder="Write a caption"
           required
           value={caption}
         />
-      </div>
+      </Form.Field>
 
-      {errorMessage && <div>{errorMessage}</div>}
+      {errorMessage && <Message negative>{errorMessage}</Message>}
 
-      <button disabled={disabled} type="submit">
+      <Button disabled={disabled} type="submit">
         Create new post
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 };
 
