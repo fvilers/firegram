@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from "react";
+import { Button, Form, Message, Segment } from "semantic-ui-react";
 import { FormProps } from "../types";
 
 export type SignInFormValues = {
@@ -18,40 +19,41 @@ const SignInForm: React.FC<Props> = ({ disabled, errorMessage, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="email">Email address</label>
-        <br />
-        <input
+    <Form onSubmit={handleSubmit} size="large">
+      <Segment stacked>
+        <Form.Input
+          autoComplete="email"
           autoFocus
           disabled={disabled}
-          id="email"
+          fluid
+          icon="mail"
+          iconPosition="left"
           onChange={e => setEmail(e.target.value)}
+          placeholder="E-mail address"
           required
           type="email"
           value={email}
         />
-      </div>
-
-      <div>
-        <label htmlFor="password">Password</label>
-        <br />
-        <input
+        <Form.Input
+          autoComplete="password"
           disabled={disabled}
-          id="password"
+          fluid
+          icon="lock"
+          iconPosition="left"
           onChange={e => setPassword(e.target.value)}
+          placeholder="Password"
           required
           type="password"
           value={password}
         />
-      </div>
 
-      {errorMessage && <div>{errorMessage}</div>}
+        {errorMessage && <Message negative>{errorMessage}</Message>}
 
-      <button disabled={disabled} type="submit">
-        Sign in
-      </button>
-    </form>
+        <Button disabled={disabled} fluid primary size="large" type="submit">
+          Sign in
+        </Button>
+      </Segment>
+    </Form>
   );
 };
 
