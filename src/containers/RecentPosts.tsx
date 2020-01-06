@@ -5,6 +5,7 @@ import { AppState, AsyncOperation } from "../redux/state";
 import { PostModel } from "../models";
 import { toArray } from "../redux/helpers";
 import { findPosts } from "../redux/actions/find-posts";
+import sortBy from "lodash/sortBy";
 import PostList from "../components/PostList";
 
 const RecentPosts: React.FC = () => {
@@ -14,7 +15,7 @@ const RecentPosts: React.FC = () => {
   const collection = useSelector<AppState, Record<string, PostModel>>(
     s => s.post.collection
   );
-  const items = toArray(collection);
+  const items = sortBy(toArray(collection), x => -x.createdAt.seconds);
   const dispatch = useDispatch();
 
   useEffect(() => {
