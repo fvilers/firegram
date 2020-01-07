@@ -85,6 +85,10 @@ export const createPost = (
       customMetadata: { owner: uid }
     });
 
+    const fileUrl = await storageRef.getDownloadURL();
+
+    await docRef.update({ fileUrl });
+
     dispatch(createPostSucceeded(post));
     history.push(`/posts/${post.id}`);
   } catch (error) {
