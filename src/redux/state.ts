@@ -21,6 +21,7 @@ export type PostState = {
   collection: Record<string, PostModel>;
   ui: {
     createPost: AsyncOperation;
+    deletePost: AsyncOperation;
     findPosts: AsyncOperation;
     getPost: AsyncOperation;
   };

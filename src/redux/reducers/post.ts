@@ -6,6 +6,12 @@ import {
   CREATE_POST_FAILED
 } from "../actions/create-post";
 import {
+  DeletePostActions,
+  DELETE_POST_STARTED,
+  DELETE_POST_SUCCEEDED,
+  DELETE_POST_FAILED
+} from "../actions/delete-post";
+import {
   FindPostsActions,
   FIND_POSTS_STARTED,
   FIND_POSTS_SUCCEEDED,
@@ -23,12 +29,17 @@ const INITIAL_STATE: PostState = {
   collection: {},
   ui: {
     createPost: { busy: false },
+    deletePost: { busy: false },
     findPosts: { busy: false },
     getPost: { busy: false }
   }
 };
 
-type SupportedActions = CreatePostActions | FindPostsActions | GetPostActions;
+type SupportedActions =
+  | CreatePostActions
+  | DeletePostActions
+  | FindPostsActions
+  | GetPostActions;
 
 const reducer = (
   state = INITIAL_STATE,
@@ -50,6 +61,23 @@ const reducer = (
     case CREATE_POST_FAILED:
       return merge(state, {
         ui: { createPost: { busy: false, errorMessage: action.payload } }
+      });
+
+    case DELETE_POST_STARTED:
+      return merge(state, {
+        ui: { deletePost: { busy: true, errorMessage: undefined } }
+      });
+
+    case DELETE_POST_SUCCEEDED:
+      return merge(
+        state,
+        { collection: { [action.payload.id]: undefined } },
+        { ui: { deletePost: { busy: false } } }
+      );
+
+    case DELETE_POST_FAILED:
+      return merge(state, {
+        ui: { deletePost: { busy: false, errorMessage: action.payload } }
       });
 
     case FIND_POSTS_STARTED:
