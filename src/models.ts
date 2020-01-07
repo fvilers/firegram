@@ -9,7 +9,7 @@ type BaseModel = {
 export type PostModel = {
   caption: string;
   fileName: string;
-  fileUrl?: string;
+  fileUrl: string;
   owner: {
     name: string;
     uid: string;

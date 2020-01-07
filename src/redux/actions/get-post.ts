@@ -59,11 +59,6 @@ export const getPost = (
     }
 
     const post = toPlainObject<PostModel>(snapshot);
-    post.fileUrl = await firebase
-      .storage()
-      .ref(`/posts/${id}`)
-      .child(post.fileName)
-      .getDownloadURL();
 
     dispatch(getPostSucceeded(post));
   } catch (error) {

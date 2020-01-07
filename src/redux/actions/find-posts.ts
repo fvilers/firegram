@@ -59,14 +59,6 @@ export const findPosts = (): ThunkAction<
       .get();
     const posts = snapshot.docs.map<PostModel>(toPlainObject);
 
-    for (const post of posts) {
-      post.fileUrl = await firebase
-        .storage()
-        .ref(`/posts/${post.id}`)
-        .child(post.fileName)
-        .getDownloadURL();
-    }
-
     dispatch(findPostsSucceeded(posts));
   } catch (error) {
     dispatch(findPostsFailed(error));
