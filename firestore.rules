@@ -1,14 +1,23 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+  	function isAuthenticated() {
+    	return request.auth != null;
+    }
+    
+  	function isOwner(res) {
+  		return isAuthenticated() && request.auth.uid == res.data.owner.uid;
+  	}
+    
     match /posts/{postId} {
       allow read: if true;
-      allow write: if request.auth != null && request.auth.uid == request.resource.data.owner.uid;
+      allow create: if isOwner(request.resource);
+      allow update, delete: if isOwner(resource);
     }
 
     match /users/{userId} {
       allow read: if true;
-      allow write: if request.auth != null && request.auth.uid == userId;
+      allow write: if isAuthenticated() && request.auth.uid == userId;
     }
   }
 } 

@@ -8,6 +8,7 @@ const PostDetails: React.FC<PostModel> = ({
   caption,
   createdAt,
   fileUrl,
+  id,
   owner
 }) => {
   return (
@@ -24,7 +25,7 @@ const PostDetails: React.FC<PostModel> = ({
               </Card.Meta>
             </Card.Content>
             <Card.Content extra>
-              <DeletePost ownerId={owner.uid} />
+              <DeletePost id={id} ownerId={owner.uid} />
             </Card.Content>
           </Card>
         </Grid.Column>
