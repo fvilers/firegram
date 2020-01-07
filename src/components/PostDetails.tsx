@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Grid, Image } from "semantic-ui-react";
 import { PostModel } from "../models";
 import FromNow from "./FromNow";
+import DeletePost from "../containers/DeletePost";
 
 const PostDetails: React.FC<PostModel> = ({
   caption,
@@ -21,6 +22,9 @@ const PostDetails: React.FC<PostModel> = ({
               <Card.Meta>
                 <FromNow seconds={createdAt.seconds} />
               </Card.Meta>
+            </Card.Content>
+            <Card.Content extra>
+              <DeletePost ownerId={owner.uid} />
             </Card.Content>
           </Card>
         </Grid.Column>
