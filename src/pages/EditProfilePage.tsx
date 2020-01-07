@@ -1,14 +1,12 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
 import EditProfile from "../containers/EditProfile";
-import Navigation from "../containers/Navigation";
+import BasePage from "./BasePage";
 
 const EditProfilePage: React.FC = () => {
   return (
-    <Container style={{ paddingTop: "1rem" }}>
-      <Navigation />
+    <BasePage>
       <EditProfile />
-    </Container>
+    </BasePage>
   );
 };
 

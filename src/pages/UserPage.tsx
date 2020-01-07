@@ -1,14 +1,12 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
-import Navigation from "../containers/Navigation";
 import Profile from "../containers/Profile";
+import BasePage from "./BasePage";
 
 const UserPage: React.FC = () => {
   return (
-    <Container style={{ paddingTop: "1rem" }}>
-      <Navigation />
+    <BasePage>
       <Profile />
-    </Container>
+    </BasePage>
   );
 };
 

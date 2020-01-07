@@ -1,14 +1,12 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
-import Navigation from "../containers/Navigation";
 import RecentPosts from "../containers/RecentPosts";
+import BasePage from "./BasePage";
 
 const HomePage: React.FC = () => {
   return (
-    <Container style={{ paddingTop: "1rem" }}>
-      <Navigation />
+    <BasePage>
       <RecentPosts />
-    </Container>
+    </BasePage>
   );
 };
 
