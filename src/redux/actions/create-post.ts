@@ -81,7 +81,9 @@ export const createPost = (
       .ref(`/posts/${docRef.id}`)
       .child(fileName);
 
-    await storageRef.putString(fileContent, "data_url");
+    await storageRef.putString(fileContent, "data_url", {
+      customMetadata: { owner: uid }
+    });
 
     dispatch(createPostSucceeded(post));
     history.push(`/posts/${post.id}`);
