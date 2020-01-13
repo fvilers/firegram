@@ -24,6 +24,7 @@ export type PostState = {
     deletePost: AsyncOperation;
     findPosts: AsyncOperation;
     getPost: AsyncOperation;
+    likePost: AsyncOperation;
   };
 };
 

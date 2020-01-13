@@ -23,6 +23,12 @@ import {
   GET_POST_SUCCEEDED,
   GET_POST_FAILED
 } from "../actions/get-post";
+import {
+  LikePostActions,
+  LIKE_POST_STARTED,
+  LIKE_POST_SUCCEEDED,
+  LIKE_POST_FAILED
+} from "../actions/like-post";
 import { merge, toObject } from "../helpers";
 
 const INITIAL_STATE: PostState = {
@@ -31,7 +37,8 @@ const INITIAL_STATE: PostState = {
     createPost: { busy: false },
     deletePost: { busy: false },
     findPosts: { busy: false },
-    getPost: { busy: false }
+    getPost: { busy: false },
+    likePost: { busy: false }
   }
 };
 
@@ -39,7 +46,8 @@ type SupportedActions =
   | CreatePostActions
   | DeletePostActions
   | FindPostsActions
-  | GetPostActions;
+  | GetPostActions
+  | LikePostActions;
 
 const reducer = (
   state = INITIAL_STATE,
@@ -112,6 +120,23 @@ const reducer = (
     case GET_POST_FAILED:
       return merge(state, {
         ui: { getPost: { busy: false, errorMessage: action.payload } }
+      });
+
+    case LIKE_POST_STARTED:
+      return merge(state, {
+        ui: { likePost: { busy: true, errorMessage: undefined } }
+      });
+
+    case LIKE_POST_SUCCEEDED:
+      return merge(
+        state,
+        { collection: { [action.payload.id]: action.payload } },
+        { ui: { likePost: { busy: false } } }
+      );
+
+    case LIKE_POST_FAILED:
+      return merge(state, {
+        ui: { likePost: { busy: false, errorMessage: action.payload } }
       });
 
     default:
