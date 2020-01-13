@@ -29,6 +29,12 @@ import {
   LIKE_POST_SUCCEEDED,
   LIKE_POST_FAILED
 } from "../actions/like-post";
+import {
+  UnlikePostActions,
+  UNLIKE_POST_STARTED,
+  UNLIKE_POST_SUCCEEDED,
+  UNLIKE_POST_FAILED
+} from "../actions/unlike-post";
 import { merge, toObject } from "../helpers";
 
 const INITIAL_STATE: PostState = {
@@ -38,7 +44,8 @@ const INITIAL_STATE: PostState = {
     deletePost: { busy: false },
     findPosts: { busy: false },
     getPost: { busy: false },
-    likePost: { busy: false }
+    likePost: { busy: false },
+    unlikePost: { busy: false }
   }
 };
 
@@ -47,7 +54,8 @@ type SupportedActions =
   | DeletePostActions
   | FindPostsActions
   | GetPostActions
-  | LikePostActions;
+  | LikePostActions
+  | UnlikePostActions;
 
 const reducer = (
   state = INITIAL_STATE,
@@ -137,6 +145,23 @@ const reducer = (
     case LIKE_POST_FAILED:
       return merge(state, {
         ui: { likePost: { busy: false, errorMessage: action.payload } }
+      });
+
+    case UNLIKE_POST_STARTED:
+      return merge(state, {
+        ui: { unlikePost: { busy: true, errorMessage: undefined } }
+      });
+
+    case UNLIKE_POST_SUCCEEDED:
+      return merge(
+        state,
+        { collection: { [action.payload.id]: action.payload } },
+        { ui: { unlikePost: { busy: false } } }
+      );
+
+    case UNLIKE_POST_FAILED:
+      return merge(state, {
+        ui: { unlikePost: { busy: false, errorMessage: action.payload } }
       });
 
     default:
