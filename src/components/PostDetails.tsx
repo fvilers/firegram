@@ -2,9 +2,9 @@ import React from "react";
 import { Card, Grid, Image } from "semantic-ui-react";
 import { PostModel } from "../models";
 import FromNow from "./FromNow";
+import LikeCount from "./LikeCount";
 import LikePost from "../containers/LikePost";
 import DeletePost from "../containers/DeletePost";
-import { toArray } from "../redux/helpers";
 
 const PostDetails: React.FC<PostModel> = ({
   caption,
@@ -14,8 +14,6 @@ const PostDetails: React.FC<PostModel> = ({
   likes,
   owner
 }) => {
-  const likesCount = toArray(likes).length;
-
   return (
     <Grid centered columns={2}>
       <Grid.Row>
@@ -26,9 +24,8 @@ const PostDetails: React.FC<PostModel> = ({
               <Card.Header>{owner.name}</Card.Header>
               <Card.Description>{caption}</Card.Description>
               <Card.Meta>
-                <FromNow seconds={createdAt.seconds} />
-                <br />
-                {likesCount} like{likesCount < 2 ? "" : "s"}
+                <FromNow seconds={createdAt.seconds} /> &bull;{" "}
+                <LikeCount likes={likes} />
               </Card.Meta>
             </Card.Content>
             <Card.Content extra>
