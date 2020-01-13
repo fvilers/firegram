@@ -9,7 +9,6 @@ type BaseModel = {
 export type PostModel = {
   caption: string;
   fileName: string;
-  fileUrl: string;
   likes: Record<string, boolean>;
   owner: {
     name: string;

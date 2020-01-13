@@ -9,11 +9,13 @@ import DeletePost from "../containers/DeletePost";
 const PostDetails: React.FC<PostModel> = ({
   caption,
   createdAt,
-  fileUrl,
+  fileName,
   id,
   likes,
   owner
 }) => {
+  const fileUrl = `https://firegram.imgix.net/posts/${id}/${fileName}?w=549`;
+
   return (
     <Grid centered columns={2}>
       <Grid.Row>
