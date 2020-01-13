@@ -77,18 +77,14 @@ export const createPost = (
       });
     const snapshot = await docRef.get();
     const post = toPlainObject<PostModel>(snapshot);
+
     const storageRef = firebase
       .storage()
       .ref(`/posts/${docRef.id}`)
       .child(fileName);
-
     await storageRef.putString(fileContent, "data_url", {
       customMetadata: { owner: uid }
     });
-
-    const fileUrl = await storageRef.getDownloadURL();
-
-    await docRef.update({ fileUrl });
 
     dispatch(createPostSucceeded(post));
     history.push(`/posts/${post.id}`);
