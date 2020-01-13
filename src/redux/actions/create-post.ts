@@ -71,6 +71,7 @@ export const createPost = (
         caption,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         fileName,
+        likes: {},
         owner: { name, uid },
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
